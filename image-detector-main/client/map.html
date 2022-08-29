@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>ResearchSupportPlatform</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+    <!-- script tag for TensorflowJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"> </script>
+    <!-- script tag for imagenet_classes.js and predict.js -->
+    <script type="text/javascript" src="imagenet_classes.js"></script>
+    <script type="text/javascript" src="predict.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT7mZrXCjAcuWAptwkqpxuBBT_w2gfY3M&callback=initMap"></script>
+
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><span class="orange">Research</span>Support Platform</h1>
+          <h2>A simple way to process the images.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="index.html" id="h">Home</a></li>
+          <li><a href="predictions.html" id="p">Predictions</a></li>
+          <li class="tab_selected"><a href="map.html" id="m">Map</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- map content -->
+
+    <div id="map_content">
+        <h1>Map of predictions</h1>
+        <br>
+        <div id="map"></div>
+        <button class="butn" onclick="getPos()">Show stored positions</button>
+        <div id="loc"></div>
+    </div>
+
+    <div id="footer"></div>
+
+</body>
+</html>

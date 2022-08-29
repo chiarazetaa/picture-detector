@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title>ResearchSupportPlatform</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+    <!-- script tag for TensorflowJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"> </script>
+    <!-- script tag for imagenet_classes.js and predict.js -->
+    <script type="text/javascript" src="imagenet_classes.js"></script>
+    <script type="text/javascript" src="predict.js"></script>
+
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><span class="orange">Research</span>Support Platform</h1>
+          <h2>A simple way to process the images.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="tab_selected"><a href="index.html" id="h">Home</a></li>
+          <li><a href="predictions.html" id="p">Predictions</a></li>
+          <li><a href="map.html" id="m">Map</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- site content -->
+
+    <div id="site_content">
+        <h1>How to make predictions on an image</h1>
+        <br>
+        <p>1. Click 'Load Model' to load the model in your browser.</p>
+        <p>2. Load an image:
+        <ul class="list">
+          <li>Click <span class="orange">'Choose image'</span> to import an image from your disk.</li>
+          <li>Click <span class="orange">'Search on Instagram'</span> to import an image from Instagram.</li>
+        </ul></p>
+        <p>3. Click 'Predict' to make predictions on the image loaded in the browser.</p>
+        <hr><br><br>
+        <button class="butn" onclick="load()">yes</button>
+
+        <!-- load model -->
+        <div class="col">
+            <button id="load-button" class="butn" onclick="loadModel()">Load Model</button>
+            <div id="progress-box" style="display: none;">
+                <p>Loading model..</p>
+            </div>
+        </div>
+
+        <!-- upload image -->
+        <div class="col">
+            <input id ="image-selector" class="butn" id="file" type="file" onchange="showImage()">
+        </div>
+
+        <!-- search with Instagram -->
+        <div class="col">
+            <button type="button" class="butn" data-toggle="modal" data-target="#myModal" onclick="cleanModal()">
+              <i class="fa fa-instagram" style="font-size:20px"></i> Search on Instagram</button>
+        </div>
+
+        <!-- prediction -->
+        <div class="col">
+            <button id="predict-button" class="butn" onclick="getPrediction()">Predict</button>
+        </div>
+
+        <!-- show image -->
+        <div class="res">
+            <div class="image-show" style="display: none;">
+                <h2>Image</h2>
+                <img id="selected-image" src="" width="400" crossorigin="anonymous">
+                <div id="bb"></div>
+            </div>
+        </div>
+
+        <!-- ordered list for predictios -->
+        <div class="res">
+            <div class="pred-show" style="display: none;">
+                <br><br>
+                <h2>TOP Prediction:</h2>
+                <div id="prediction"></div>
+                <br><br>
+                <h2>Predictions</h2>
+                <ol id="prediction-list"></ol>
+                <br><br>
+                <div id="ss"></div>
+            </div>
+        </div><br><br><br>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static" >
+          <div style="width:70%; margin-left:15%; margin-right:15%">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header"  style="color:#474747;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><b><i class="fa fa-instagram" style="font-size:24px"></i> Instagram</b></h4>
+              </div>
+              <div class="modal-body" style="color:#474747;">
+                <p><strong>Who or what do you wanna search?</strong></p>
+                <p>Use "@" for usernames and "#" for tags.</p>
+                <input type="text" id="search" style="width:130pt;" placeholder="E.g: #sea or @sea"><hr>
+                <p><strong>How many posts do you wanna see?</strong></p>
+                <p>Right now the max is 9.</p>
+                <input type="text" id="num" placeholder="E.g: 9">
+                <hr>
+                <button type="button" id="generate" class="butn" onclick="imageIG()">Generate feed</button>
+                <br><br>
+                <div class="postrow">
+                  <div class="posts"></div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </div>
+
+
+
+<!-- map content -->
+    <div id="map_content" style="display:none">
+        <h1>Map</h1>
+        <br>
+        <div id="map"></div>
+    </div>
+
+
+    <div id="footer"></div>
+
+</body>
+</html>

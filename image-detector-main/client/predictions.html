@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <title>ResearchSupportPlatform</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+    <!-- script tag for TensorflowJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"> </script>
+    <!-- script tag for imagenet_classes.js and predict.js -->
+    <script type="text/javascript" src="imagenet_classes.js"></script>
+    <script type="text/javascript" src="predict.js"></script>
+
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><span class="orange">Research</span>Support Platform</h1>
+          <h2>A simple way to process the images.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="index.html" id="h">Home</a></li>
+          <li class="tab_selected"><a href="predictions.html" id="p">Predictions</a></li>
+          <li><a href="map.html" id="m">Map</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- predictions content -->
+
+    <div id="pred_content">
+        <h1>Predicted images</h1>
+        <br>
+        <p> - 'VERIFIED': for images whose prediction is good. <span class="green">(>= 70%)</span></p>
+        <p> - 'PENDING': for images whose prediction is almost good. <span class="orange">(>= 40%)</span></p>
+        <p> - 'UNCERTAIN': for images whose prediction is bad. <span class="red">(< 40%)</span></p>
+        <button class="butn" onclick="getStoredImg()">Show stored images</button>
+        <button class="butn" onclick="clearStoredImg()"><i class="fa fa-trash-o" style="font-size:20px"></i> Clear All</button>
+        <br><hr><br>
+
+        <div class="rowww" id="rowww" style="display:none">
+            <div class="column">
+              <h2>VERIFIED</h2><br><br>
+              <div id="verified"></div>
+            </div>
+            <div class="column">
+              <h2>PENDING</h2><br><br>
+              <div id="pending"></div>
+            </div>
+            <div class="column">
+              <h2>UNCERTAIN</h2><br><br>
+              <div id="uncertain"></div>
+            </div>
+            <br><br><br>
+        </div>
+        <div id="no"></div>
+
+    </div>
+
+    <div id="footer"></div>
+
+</body>
+</html>
